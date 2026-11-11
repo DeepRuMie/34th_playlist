@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="음악 한 조각 - 34기 음악 공유 플레이리스트">
+<title>음악 한 조각 | 34기 플레이리스트</title>
+<style>
+:root{--bg:#f4f5f7;--paper:#fff;--ink:#20242b;--muted:#737b87;--line:#e4e7eb;--accent:#272d38;--soft:#edf0f3;--green:#257a59;--amber:#a36b12}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;padding-bottom:190px}
+button,input,select,textarea{font:inherit}button{border:0;border-radius:9px;padding:10px 13px;background:var(--accent);color:#fff;cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}button.secondary{background:var(--soft);color:var(--ink)}button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top{max-width:1180px;margin:auto;padding:13px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:850;letter-spacing:.02em}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.14em;margin-top:3px}
+nav{display:flex;gap:5px;flex-wrap:wrap}.navbtn{background:transparent;color:var(--muted);padding:9px 11px}.navbtn.active{background:var(--soft);color:var(--ink);font-weight:750}
+main{max-width:1180px;margin:24px auto;padding:0 20px 40px}.hero{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:18px 0 20px}.eyebrow{font-size:10px;letter-spacing:.15em;color:var(--muted);font-weight:800}.hero h1{font-size:clamp(27px,4vw,38px);margin:6px 0}.hero p{margin:0;color:var(--muted)}.stats{display:flex;gap:8px}.stat{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-width:90px}.stat b{display:block;font-size:19px}.stat span{font-size:10px;color:var(--muted)}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:17px;margin-bottom:14px}.panel h2{font-size:17px;margin:0 0 13px}.page{display:none}.page.active{display:block}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toolbar input,.toolbar select,.field{border:1px solid var(--line);border-radius:8px;background:#fff;padding:10px;color:var(--ink);min-width:0}.toolbar input{flex:1;min-width:170px}.notice{font-size:12px;line-height:1.6;color:var(--muted)}.warning{background:#fff8e9;border:1px solid #f0dfb7;border-radius:10px;padding:10px 12px;color:#765315;font-size:12px;line-height:1.55;margin-bottom:14px}
+.songlist{display:flex;flex-direction:column}.song{display:grid;grid-template-columns:30px minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.song:last-child{border-bottom:0}.num{color:#9aa1aa;font-size:11px;text-align:center}.songtitle{font-weight:750}.songmeta{font-size:11px;color:var(--muted);margin-top:3px}.tag{display:inline-block;background:var(--soft);color:#525b68;padding:3px 6px;border-radius:5px;font-size:10px;margin:5px 3px 0 0}.songactions{display:flex;gap:5px}.songactions button{padding:7px 9px;font-size:11px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px}.themeweeks{display:flex;flex-direction:column;gap:16px}.week h3{font-size:14px;margin:0 0 8px}.weekgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}.themebtn{min-height:76px;background:#fff;color:var(--ink);border:1px solid var(--line);text-align:left;padding:9px;border-radius:9px;min-width:0}.themebtn b{display:block;font-size:11px;line-height:1.35}.themebtn small{display:block;color:var(--muted);font-size:10px;margin-top:5px}.themebtn.emptyday{background:#f8f9fa;color:#c3c8cf;border-style:dashed}.themebtn.selected{border-color:#303844;box-shadow:inset 0 0 0 1px #303844}
+.subtabs{display:flex;gap:6px;margin:0 0 14px}.subtab{background:var(--soft);color:var(--muted)}.subtab.active{background:var(--accent);color:white}
+.drawrow{display:grid;grid-template-columns:48px minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr) 44px;gap:7px;align-items:stretch}.dice{font-size:21px;padding:0;min-height:46px}.drawcell{background:#f7f8fa;border:1px solid var(--line);border-radius:9px;padding:9px;min-width:0;display:flex;flex-direction:column;justify-content:center}.drawcell small{font-size:9px;color:var(--muted);margin-bottom:3px}.drawcell b{font-size:12px;overflow-wrap:anywhere}.addicon{font-size:18px;padding:0;background:#e8f3ed;color:#1e704e}.toggleline{display:flex;align-items:center;gap:9px;margin:12px 0 2px;font-size:12px;color:var(--muted)}.switch{appearance:none;width:40px;height:22px;background:#cbd0d6;border-radius:99px;position:relative;cursor:pointer;transition:.2s;margin:0}.switch:checked{background:#277b58}.switch:before{content:"";position:absolute;width:16px;height:16px;left:3px;top:3px;border-radius:50%;background:#fff;transition:.2s}.switch:checked:before{transform:translateX(18px)}
+.filterrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}.filterrow select{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff}.drawresult.disabled{opacity:.42;pointer-events:none}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.admin-grid label{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:5px}.admin-grid input,.admin-grid textarea,.admin-grid select{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px;background:#fff;color:var(--ink)}.admin-grid textarea{min-height:65px}.wide{grid-column:1/-1}
+.playerdock{position:fixed;bottom:0;left:0;right:0;z-index:30;background:#171a20;color:white;border-top:1px solid #343943;box-shadow:0 -8px 28px #10131820}.dockinner{max-width:1180px;margin:auto;padding:10px 20px;display:grid;grid-template-columns:minmax(190px,280px) minmax(0,1fr) 220px;gap:14px;align-items:center}.videobox{aspect-ratio:16/9;background:#08090b;border-radius:8px;overflow:hidden;position:relative}.videobox iframe{width:100%;height:100%;border:0}.placeholder{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;color:#aeb4be;font-size:11px;padding:10px}.dockinfo{min-width:0}.dockstate{font-size:10px;color:#aeb4be}.docktitle{font-size:15px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:4px 0}.dockartist{font-size:11px;color:#aeb4be}.controls{display:flex;gap:7px;margin-top:8px}.controls button{background:#343943;border-radius:50%;width:32px;height:32px;padding:0}.controls button.main{background:white;color:#171a20;width:38px;height:38px}.dockqueue{max-height:120px;overflow:auto;border-left:1px solid #343943;padding-left:12px}.dockqueuehead{display:flex;justify-content:space-between;align-items:center;font-size:11px;margin-bottom:4px}.queueitem{display:flex;gap:6px;align-items:center;padding:5px 0;border-bottom:1px solid #343943;font-size:10px}.queueitem span{color:#aeb4be}.queueitem .qtitle{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.queueitem button{padding:4px 6px;font-size:9px;background:#343943}
+@media(min-width:1100px){
+ body{padding-bottom:30px}
+ main{width:calc(100vw - max(40px,(100vw - 1180px)/2) - 410px);max-width:none;margin-left:max(20px,(100vw - 1180px)/2);margin-right:0}
+ .playerdock{top:76px;right:18px;bottom:18px;left:auto;width:370px;border:1px solid #343943;border-radius:14px;overflow:auto;box-shadow:0 8px 28px #10131820}
+ .dockinner{max-width:none;height:100%;margin:0;padding:14px;display:flex;flex-direction:column;align-items:stretch;gap:12px}
+ .videobox{width:100%;max-width:none;flex:none}
+ .dockinfo{flex:none}
+ .dockqueue{max-height:none;min-height:0;flex:1;overflow:auto;border-left:0;border-top:1px solid #343943;padding:12px 0 0}
+}
+@media(max-width:1099px){
+ body{padding-bottom:145px}
+ .dockheading{font-size:17px;font-weight:800;color:#fff;margin-bottom:0}.playerdock{top:auto;right:0;bottom:0;left:0;width:auto;border-radius:0}.dockheading{display:none}
+ .dockinner{grid-template-columns:140px minmax(0,1fr);padding:9px 16px;gap:10px}
+ .dockqueue{display:none}
+ .videobox{max-width:140px}
+}
+.empty{padding:22px;text-align:center;color:var(--muted);font-size:12px}.hidden{display:none!important}.footer{text-align:center;color:var(--muted);font-size:10px;margin:16px 0}
+@media(max-width:850px){.top{align-items:flex-start;flex-direction:column}.layout{grid-template-columns:1fr}.dockinner{grid-template-columns:140px minmax(0,1fr)}.dockqueue{display:none}.videobox{max-width:140px}.hero{display:block}.stats{margin-top:12px}}
+@media(max-width:600px){main{padding:0 11px 25px}.panel{padding:12px}.weekgrid{gap:4px}.themebtn{min-height:68px;padding:6px}.themebtn b{font-size:9px}.themebtn small{font-size:8px}.drawrow{grid-template-columns:42px minmax(0,1fr) minmax(0,1fr) 40px}.drawrow .artistcell{grid-column:2/4}.dockinner{padding:8px 10px;grid-template-columns:108px minmax(0,1fr);gap:9px}.videobox{max-width:108px}.docktitle{font-size:12px}.dockartist{font-size:10px}.controls button{width:28px;height:28px}.controls button.main{width:33px;height:33px}body{padding-bottom:145px}.admin-grid{grid-template-columns:1fr}.wide{grid-column:auto}.stats .stat{min-width:0;flex:1}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">음악 한 조각<small>34TH MUSIC CREW · 2026</small></div>
+<nav>
+<button class="navbtn active" data-page="home">플레이리스트</button>
+<button class="navbtn" data-page="random">랜덤뽑기</button>
+<button class="navbtn" data-page="themes">주제별</button>
+<button class="navbtn" data-page="categories">카테고리별</button>
+<button class="navbtn" data-page="admin">관리용</button>
+</nav></div></header>
+<main>
+<section class="hero"><div><div class="eyebrow">OUR SHARED MUSIC ARCHIVE</div><h1>음악 한 조각</h1><p>34기 음악 공유 크루가 함께 모은 추천곡</p></div><div class="stats"><div class="stat"><b id="totalCount">0</b><span>등록된 곡</span></div><div class="stat"><b id="themeCount">0</b><span>추천 주제</span></div><div class="stat"><b id="queueCount">0</b><span>재생 대기열</span></div></div></section>
+
+<section class="page active" id="page-home">
+<div class="warning">현재 미리보기에는 기존 시제품의 31곡이 들어 있습니다. 카카오톡 TXT 전체에서 추출한 추천곡 후보의 중복·곡명·가수명 확인과 외부 검색 검증은 아직 완료되지 않았습니다. 아래 AI 분류도 화면 및 추첨 기능 확인을 위한 임시 라벨입니다.</div>
+<div class="panel"><h2>전체 추천곡</h2><div class="toolbar"><input id="search" placeholder="곡 제목 또는 가수 검색"><select id="themeFilter"><option value="">전체 주제</option></select><button class="secondary" id="randomOne">랜덤 1곡</button><button id="makeQueue">랜덤 10곡 대기열</button></div><div class="songlist" id="songList"></div></div>
+</section>
+
+<section class="page" id="page-random">
+<div class="panel"><h2>플리에 랜덤 추가</h2><div class="subtabs"><button class="subtab active" data-mode="theme">주제별</button><button class="subtab" data-mode="category">카테고리별</button></div>
+<div id="themeDraw">
+<div class="drawrow"><button class="dice" id="themeDice" title="주제에서 랜덤 추첨">🎲</button><div class="drawcell"><small>추천 주제</small><b id="themeDrawTheme">추첨 전</b></div><div class="drawcell"><small>곡명</small><b id="themeDrawTitle">추첨 전</b></div><div class="drawcell artistcell"><small>가수명</small><b id="themeDrawArtist">추첨 전</b></div><button class="addicon" id="themeAdd" title="플레이리스트 맨 뒤에 추가">＋</button></div>
+<label class="toggleline"><input class="switch" type="checkbox" id="themeAutoAdd"> 뽑은 곡 바로 플리에 넣기!</label>
+</div>
+<div id="categoryDraw" class="hidden">
+<div class="filterrow"><select id="categoryMain"><option value="">카테고리 선택</option><option value="genre">장르</option><option value="year">발매년도</option><option value="mood">분위기·감정</option><option value="use">상황·용도</option></select><select id="categorySub" disabled><option value="">세부 카테고리 (선택)</option></select></div>
+<div class="drawresult disabled" id="categoryDrawResult"><div class="drawrow"><button class="dice" id="categoryDice" title="선택한 카테고리에서 랜덤 추첨">🎲</button><div class="drawcell"><small>추천 주제</small><b id="categoryDrawTheme">추첨 전</b></div><div class="drawcell"><small>곡명</small><b id="categoryDrawTitle">추첨 전</b></div><div class="drawcell artistcell"><small>가수명</small><b id="categoryDrawArtist">추첨 전</b></div><button class="addicon" id="categoryAdd" title="플레이리스트 맨 뒤에 추가">＋</button></div><label class="toggleline"><input class="switch" type="checkbox" id="categoryAutoAdd"> 뽑은 곡 바로 플리에 넣기!</label></div>
+</div>
+<p class="notice">추첨한 곡은 자동 재생되지 않습니다. 추가 버튼을 누르거나 자동 추가 토글을 켜면 현재 플레이리스트의 가장 마지막에 들어갑니다. 같은 곡을 중복으로 추가할 수 있습니다.</p>
+</div>
+</section>
+
+<section class="page" id="page-themes"><div class="panel"><h2>주차별 추천 주제</h2><p class="notice">각 주차는 월요일부터 일요일 순서입니다. 날짜는 카드에만 작게 표시하고 요일 표기는 생략했습니다. 카드를 선택하면 해당 주차 바로 아래에 연결된 곡이 표시됩니다.</p><div id="themeWeeks" class="themeweeks"></div></div></section>
+
+<section class="page" id="page-categories">
+<div class="panel"><h2>카테고리별(AI)</h2><p class="notice">32기 엑셀의 분류 구조를 참고해 장르·발매년도·분위기·감정·상황·용도 기준으로 구성했습니다. 현재 곡별 라벨은 임시 분류이며, 전체 추천곡 검증 후 다시 조정해야 합니다.</p>
+<div class="toolbar"><select id="categoryView"><option value="genre">장르</option><option value="year">발매년도</option><option value="mood">분위기·감정</option><option value="use">상황·용도</option></select><select id="categoryValue"><option value="">전체 보기</option></select><button class="secondary" id="categoryRandom">이 분류에서 랜덤 추첨</button></div><div id="categorySongList" class="songlist"></div>
+</div></section>
+
+<section class="page" id="page-admin"><div class="panel" id="adminLock"><h2>관리용 메뉴</h2><p class="notice">관리용 메뉴에 접근하려면 코드를 입력하세요.</p><div class="toolbar"><input id="adminPassword" type="password" placeholder="접근 코드"><button id="unlockAdmin">확인</button></div><p id="adminError" class="notice"></p></div>
+<div id="adminContent" class="hidden">
+<div class="warning">주의: 이 코드는 HTML 파일 안에서 확인할 수 있는 간단한 화면 잠금입니다. 파일을 받은 사람의 개발자 도구 접근까지 막는 보안 인증은 아닙니다.</div>
+<div class="panel"><h2>곡 추가 및 수정</h2><form id="songForm"><div class="admin-grid">
+<label>곡 제목<input id="fTitle" required></label><label>가수<input id="fArtist" required></label>
+<label>추천 날짜<input id="fDate" type="date"></label><label>추천 주제<input id="fTheme" list="themeOptions"><datalist id="themeOptions"></datalist></label>
+<label>추천자<input id="fMember"></label><label>유튜브 영상 ID 또는 주소<input id="fVideo"></label>
+<label>장르<select id="fGenre"><option>OST</option><option>댄스/아이돌</option><option>발라드</option><option>밴드/록</option><option>인디</option><option>팝</option><option>힙합/랩</option></select></label>
+<label>발매년도<select id="fYear"><option value="1979">1980 이전</option><option value="1985">1980~</option><option value="1995">1990~</option><option value="2005">2000~</option><option value="2015">2010~</option><option value="2022">2020~</option></select></label>
+<label>분위기·감정<select id="fMood"><option>감성/잔잔</option><option>강렬함</option><option>몽환</option><option>설렘</option><option>신남/청량</option><option>우울/쓸쓸</option></select></label>
+<label>상황·용도<select id="fUse"><option>드라이브/여행</option><option>밤/새벽</option><option>비 오는 날</option><option>산책</option><option>운동</option><option>이별/그리움</option><option>카페</option></select></label>
+<label class="wide">추천 이유<textarea id="fReason"></textarea></label></div><div class="toolbar" style="margin-top:12px"><button type="submit" id="saveSong">곡 등록</button><button type="button" class="secondary" id="cancelEdit">입력 초기화</button></div><input type="hidden" id="fId"></form></div>
+<div class="panel"><h2>등록곡 관리</h2><div id="adminSongList" class="songlist"></div><div class="toolbar"><button class="secondary" id="exportJson">JSON 내보내기</button><button class="secondary" id="importJsonBtn">JSON 불러오기</button><input class="hidden" type="file" id="importJson" accept="application/json"></div></div>
+</div></section>
+<div class="footer">음악 한 조각 · 34기 음악 공유 크루</div>
+</main>
+
+<!-- 탭을 바꾸어도 iframe 자체를 제거하지 않는 전역 플레이어입니다. -->
+<div class="playerdock"><div class="dockinner"><div class="dockheading">지금 재생</div>
+<div class="videobox" id="videoArea"><div class="placeholder">곡을 선택하면 여기에 유튜브 영상이 표시됩니다.<br><br>오류 153은 브라우저가 Referer를 전달하지 않을 때 발생할 수 있습니다. HTTPS 웹 주소에서 확인해 주세요.</div></div>
+<div class="dockinfo"><div class="dockstate" id="playState">READY</div><div class="docktitle" id="nowTitle">곡을 선택해 주세요</div><div class="dockartist" id="nowArtist">아티스트</div>
+<div class="controls"><button id="shuffleQueue" title="셔플">⤨</button><button id="prevTrack" title="이전 곡">Ⅱ</button><button class="main" id="playPause" title="재생">▶</button><button id="nextTrack" title="다음 곡">▶|</button><button id="repeatQueue" title="전체 반복">↻</button></div></div>
+<div class="dockqueue"><div class="dockqueuehead"><b>재생 대기열</b><button class="secondary" id="clearQueue">비우기</button></div><div id="queueList"></div></div>
+</div></div>
+
+<script>
+const DEFAULT_SONGS = [{"id": 1, "title": "아파트 (삼성라이온즈 ver.)", "artist": "윤수일", "date": "2026-09-21", "theme": "월요병 퇴치", "reason": "야구 응원가의 열기로 월요일의 아쉬움을 달래고 한 주를 시작하기 좋은 곡입니다.", "videoId": "-ZgTqVLWVDc", "member": "김나영", "genre": "발라드", "year": 2020, "mood": "신남/청량", "use": "드라이브/여행", "tagStatus": "임시 분류", "verified": false}, {"id": 2, "title": "더 아름다워져", "artist": "소수빈", "date": "2026-09-29", "theme": "커버 혹은 리메이크", "reason": "성시경 원곡을 소수빈 특유의 음색과 가창력으로 새롭게 들을 수 있는 곡입니다.", "videoId": "qwPmCQ0EYTc", "member": "권승오", "genre": "인디", "year": 2010, "mood": "설렘", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 3, "title": "우리의 밤은 당신의 낮보다 아름답다", "artist": "한승윤(D82), 서영주(너드커넥션)", "date": "2026-09-29", "theme": "커버 혹은 리메이크", "reason": "오디션 프로그램 무대를 통해 알게 된 곡으로, 시간이 지나도 다시 찾아 듣게 되는 무대입니다.", "videoId": "_wCYWOd0zBo", "member": "예지원", "genre": "발라드", "year": 2020, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 4, "title": "지상에서 영원으로", "artist": "유다은 (정경화 cover)", "date": "2026-09-29", "theme": "커버 혹은 리메이크", "reason": "담백한 보컬과 필요한 순간 힘을 주는 표현이 매력적인 커버입니다.", "videoId": "-jghrx-19Is", "member": "김나영", "genre": "발라드", "year": 2020, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 5, "title": "나의 마음에", "artist": "태양", "date": "2026-10-02", "theme": "내 결혼식에 울려퍼질 추천 곡", "reason": "아름다운 가사 때문에 미래의 결혼식 축가로 상상하게 된 곡입니다.", "videoId": "PBUad0SN2QI", "member": "예지원", "genre": "발라드", "year": 2020, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 6, "title": "Cheap Sunglasses", "artist": "John K", "date": "2026-10-03", "theme": "노래 기저의 악기 소리", "reason": "손가락 튕기는 도입부와 점차 고조되는 배경 사운드가 인상적입니다.", "videoId": "q3KyhUdPFKE", "member": "박준협", "genre": "팝", "year": 2020, "mood": "설렘", "use": "카페", "tagStatus": "임시 분류", "verified": false}, {"id": 7, "title": "La Song", "artist": "비, 태진아", "date": "2026-10-06", "theme": "콜라보 레이블", "reason": "트로트 가수의 실력과 장르에 대한 편견을 넘어서는 강한 인상을 남긴 곡입니다.", "videoId": "5eR4hTo73GA", "member": "김은희", "genre": "댄스/아이돌", "year": 2020, "mood": "신남/청량", "use": "드라이브/여행", "tagStatus": "임시 분류", "verified": false}, {"id": 8, "title": "애련", "artist": "탁재훈, 유영우", "date": "2026-10-06", "theme": "콜라보 레이블", "reason": "두 사람의 듀엣에서 유영우의 보컬을 인상 깊게 들을 수 있는 곡입니다.", "videoId": "EEfx7xO2yIg", "member": "정동욱", "genre": "발라드", "year": 2020, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 9, "title": "레옹", "artist": "박명수, 아이유", "date": "2026-10-06", "theme": "콜라보 레이블", "reason": "무한도전이 아니었다면 만나기 어려웠을 조합으로, 서로 다른 보컬 스타일이 어우러집니다.", "videoId": "U_KH7Tw97HU", "member": "안재웅", "genre": "댄스/아이돌", "year": 2010, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 10, "title": "Dance Dance Dance", "artist": "HooHaa", "date": "2026-10-09", "theme": "라이브의 맛", "reason": "나른한 댄스곡과 현장에서 돋보이는 베이스 라인이 매력적인 인디밴드의 곡입니다.", "videoId": "MOxQb5NMZAc", "member": "김은희", "genre": "댄스/아이돌", "year": 2020, "mood": "신남/청량", "use": "드라이브/여행", "tagStatus": "임시 분류", "verified": false}, {"id": 11, "title": "슬픔활용법", "artist": "김범수", "date": "2026-10-09", "theme": "라이브의 맛", "reason": "관객의 함성과 현장감, 아티스트의 라이브가 어우러지는 무대입니다.", "videoId": "OHZB-enU_Vo", "member": "박정빈", "genre": "발라드", "year": 2000, "mood": "우울/쓸쓸", "use": "밤/새벽", "tagStatus": "임시 분류", "verified": false}, {"id": 12, "title": "내 손을 잡아", "artist": "아이유", "date": "2026-10-09", "theme": "라이브의 맛", "reason": "팬들의 함성과 콘서트의 생동감 덕분에 음원보다 라이브로 들을 때 더 좋은 곡입니다.", "videoId": "3iM_06QeZi8", "member": "정한솔", "genre": "댄스/아이돌", "year": 2010, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 13, "title": "추억은 사랑을 닮아", "artist": "박효신", "date": "2026-10-09", "theme": "라이브의 맛", "reason": "비 오는 날의 분위기와 잘 어울리는 라이브 영상이 기억에 남는 곡입니다.", "videoId": "pa-NG96ZzUs", "member": "박준협", "genre": "발라드", "year": 2000, "mood": "우울/쓸쓸", "use": "이별/그리움", "tagStatus": "임시 분류", "verified": false}, {"id": 14, "title": "Home", "artist": "박효신", "date": "2026-10-09", "theme": "라이브의 맛", "reason": "콘서트에서 직접 들었던 떼창의 기억을 떠올리게 하는 곡입니다.", "videoId": "k8HpdPBUzzU", "member": "정동욱", "genre": "발라드", "year": 2000, "mood": "감성/잔잔", "use": "밤/새벽", "tagStatus": "임시 분류", "verified": false}, {"id": 15, "title": "희미해서", "artist": "이문세 (feat. 헤이즈)", "date": "2026-10-09", "theme": "라이브의 맛", "reason": "헤이즈의 참여와 딩고 라이브 영상에서 드러나는 섬세한 감정 표현이 인상적입니다.", "videoId": "ZCvF4V8w47U", "member": "우성준", "genre": "발라드", "year": 2020, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 16, "title": "Someone Like You", "artist": "박정현", "date": "2026-10-09", "theme": "라이브의 맛", "reason": "비긴어게인 버스킹 무대에서 박정현의 성량과 고음이 돋보이는 라이브입니다.", "videoId": "byumNPxw4ag", "member": "어정봉", "genre": "발라드", "year": 2020, "mood": "감성/잔잔", "use": "밤/새벽", "tagStatus": "임시 분류", "verified": false}, {"id": 17, "title": "Raise You Up", "artist": "Kinky Boots OST", "date": "2026-10-09", "theme": "라이브의 맛", "reason": "뮤지컬 킹키부츠의 마지막 피날레에 등장하는 곡입니다.", "videoId": "f_IxA6dByUE", "member": "권승오", "genre": "OST", "year": 2020, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 18, "title": "목포행 완행열차", "artist": "장윤정", "date": "2026-10-12", "theme": "트로트 특집", "reason": "게스트하우스에서 알게 된 곡으로, 익숙한 트로트와 다른 세련된 느낌이 있습니다.", "videoId": "89yRoGEnlEQ", "member": "권승오", "genre": "발라드", "year": 2020, "mood": "신남/청량", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 19, "title": "하얀 나비", "artist": "김정호", "date": "2026-10-12", "theme": "트로트 특집", "reason": "영화 수상한 그녀에서 심은경이 부르는 장면과 가사가 잘 어울려 기억에 남은 곡입니다.", "videoId": "0ZA2Wuo-OZ0", "member": "예지원", "genre": "발라드", "year": 2000, "mood": "감성/잔잔", "use": "밤/새벽", "tagStatus": "임시 분류", "verified": false}, {"id": 20, "title": "Never Be the Same", "artist": "Camila Cabello", "date": "2026-10-14", "theme": "장르의 재발견", "reason": "평소 자주 듣지 않던 외국곡이지만 독특한 보컬과 멜로디에 빠져 반복해서 들었던 곡입니다.", "videoId": "dFCOsQJUVng", "member": "박준협", "genre": "팝", "year": 2020, "mood": "강렬함", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 21, "title": "Close to You", "artist": "쏠(SOLE), 타마", "date": "2026-10-16", "theme": "달달구리 노래", "reason": "두 아티스트가 함께 커버한 버전으로 추천된 곡입니다.", "videoId": "RuORKyaDPCo", "member": "권승오", "genre": "인디", "year": 2020, "mood": "설렘", "use": "카페", "tagStatus": "임시 분류", "verified": false}, {"id": 22, "title": "난치병", "artist": "하림", "date": "2026-10-17", "theme": "이어폰 필수", "reason": "비긴어게인 라이브 버전에서 원곡자의 깊이가 잘 드러나는 곡입니다.", "videoId": "oTTxliSHLLU", "member": "우성준", "genre": "발라드", "year": 2020, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 23, "title": "지난날", "artist": "윤종신", "date": "2026-10-18", "theme": "위로와 응원", "reason": "지친 마음을 달래주는 노래로 뮤직비디오도 함께 추천되었습니다.", "videoId": "Sxz5lElWewc", "member": "박정빈", "genre": "발라드", "year": 2000, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 24, "title": "Risk It All", "artist": "Bruno Mars", "date": "2026-10-20", "theme": "카페 BGM", "reason": "커버 영상을 통해 알게 되었으며 카페에서 들으면 좋겠다고 추천된 곡입니다.", "videoId": "GUcLCiGOMnk", "member": "정동욱", "genre": "팝", "year": 2020, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 25, "title": "폭죽과 풍선들", "artist": "검정치마", "date": "2026-10-20", "theme": "카페 BGM", "reason": "우드톤 카페에서 LP로 틀면 좋을 듯한 차분한 도입부와 풍성해지는 사운드가 특징입니다.", "videoId": "AjUt0qjHc_A", "member": "김예진", "genre": "밴드/록", "year": 2010, "mood": "감성/잔잔", "use": "카페", "tagStatus": "임시 분류", "verified": false}, {"id": 26, "title": "처음 그 자리에", "artist": "이보람", "date": "2026-10-25", "theme": "내 인생 영화", "reason": "드라마 풀하우스 OST로, 오랫동안 들어온 곡이 다시 주목받는 점이 반가웠다는 추천입니다.", "videoId": "zWTxdwT2Gqo", "member": "권승오", "genre": "발라드", "year": 2020, "mood": "감성/잔잔", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 27, "title": "Pretender", "artist": "Official髭男dism", "date": "2026-10-27", "theme": "역주행의 명곡", "reason": "뒤늦게 알게 되었고 타케나카 유다이의 커버 버전으로 더 청량하게 느꼈다는 추천입니다.", "videoId": "BtjdDDfCjvo", "member": "예지원", "genre": "발라드", "year": 2020, "mood": "강렬함", "use": "산책", "tagStatus": "임시 분류", "verified": false}, {"id": 28, "title": "Chocolate Drive", "artist": "김지수", "date": "2026-10-27", "theme": "역주행의 명곡", "reason": "슈퍼스타K2에서 처음 접한 곡으로 최근에도 꾸준히 듣는다고 소개되었습니다.", "videoId": "ZOWm8pHtdD0", "member": "권승오", "genre": "발라드", "year": 2020, "mood": "감성/잔잔", "use": "드라이브/여행", "tagStatus": "임시 분류", "verified": false}, {"id": 29, "title": "지나간다", "artist": "김범수 (정승환 cover)", "date": "2026-10-28", "theme": "센치", "reason": "힘들 때 듣는 곡으로, 원곡보다 정승환의 커버 버전을 선호한다는 추천입니다.", "videoId": "WfD6MzOd3KY", "member": "정동욱", "genre": "발라드", "year": 2000, "mood": "우울/쓸쓸", "use": "밤/새벽", "tagStatus": "임시 분류", "verified": false}, {"id": 30, "title": "Grip!", "artist": "서현진", "date": "2026-10-30", "theme": "불금 파티", "reason": "이누야샤 4기 오프닝곡으로, 또래에게 추억을 불러일으키는 곡이라고 소개되었습니다.", "videoId": "RlUD53wuaxI", "member": "권승오", "genre": "발라드", "year": 2020, "mood": "신남/청량", "use": "운동", "tagStatus": "임시 분류", "verified": false}, {"id": 31, "title": "거리에서", "artist": "성시경", "date": "2026-10-31", "theme": "가을 감성", "reason": "쌀쌀해지기 시작하면 생각나는 곡으로 폴 블랑코 커버도 함께 추천되었습니다.", "videoId": "6PTx2gzygdc", "member": "정동욱", "genre": "발라드", "year": 2000, "mood": "우울/쓸쓸", "use": "산책", "tagStatus": "임시 분류", "verified": false}];
+const THEMES = [{"name": "월요병 퇴치", "date": "2026-09-21"}, {"name": "취향 저격", "date": "2026-09-22"}, {"name": "숨은 보석", "date": "2026-09-23"}, {"name": "여름 갈무리", "date": "2026-09-24"}, {"name": "해피 추석", "date": "2026-09-25"}, {"name": "비 오는 주말", "date": "2026-09-26"}, {"name": "시적인 노랫말", "date": "2026-09-27"}, {"name": "커버 혹은 리메이크", "date": "2026-09-29"}, {"name": "독보적인 톤과 음색", "date": "2026-09-30"}, {"name": "특정 장소나 풍경에 담긴 추억", "date": "2026-10-01"}, {"name": "내 결혼식에 울려퍼질 추천 곡", "date": "2026-10-02"}, {"name": "노래 기저의 악기 소리", "date": "2026-10-03"}, {"name": "분위기로 압도하는 외국곡", "date": "2026-10-04"}, {"name": "드라이브", "date": "2026-10-05"}, {"name": "콜라보 레이블", "date": "2026-10-06"}, {"name": "반전 매력", "date": "2026-10-07"}, {"name": "독특한 노래 제목", "date": "2026-10-08"}, {"name": "라이브의 맛", "date": "2026-10-09"}, {"name": "첫눈에 반한 앨범 커버", "date": "2026-10-10"}, {"name": "혼자만의 휴식", "date": "2026-10-11"}, {"name": "트로트 특집", "date": "2026-10-12"}, {"name": "첫 단추", "date": "2026-10-13"}, {"name": "장르의 재발견", "date": "2026-10-14"}, {"name": "모닝콜", "date": "2026-10-15"}, {"name": "달달구리 노래", "date": "2026-10-16"}, {"name": "이어폰 필수", "date": "2026-10-17"}, {"name": "위로와 응원", "date": "2026-10-18"}, {"name": "노래방 애창곡", "date": "2026-10-19"}, {"name": "카페 BGM", "date": "2026-10-20"}, {"name": "얼리 캐롤", "date": "2026-10-21"}, {"name": "비 오는 날", "date": "2026-10-22"}, {"name": "텐션 업", "date": "2026-10-23"}, {"name": "운동", "date": "2026-10-24"}, {"name": "내 인생 영화", "date": "2026-10-25"}, {"name": "샤워할 때", "date": "2026-10-26"}, {"name": "역주행의 명곡", "date": "2026-10-27"}, {"name": "영화·드라마 장면 연상", "date": "2026-09-28"}, {"name": "센치", "date": "2026-10-28"}, {"name": "심폐소생", "date": "2026-10-29"}, {"name": "불금 파티", "date": "2026-10-30"}, {"name": "가을 감성", "date": "2026-10-31"}, {"name": "크루 마무리", "date": "2026-11-01"}];
+const STORAGE_KEY = "music_piece_34_songs_v2";
+const categories = {
+ genre:["OST","댄스/아이돌","발라드","밴드/록","인디","팝","힙합/랩"],
+ year:["1980 이전","1980~","1990~","2000~","2010~","2020~"],
+ mood:["감성/잔잔","강렬함","몽환","설렘","신남/청량","우울/쓸쓸"],
+ use:["드라이브/여행","밤/새벽","비 오는 날","산책","운동","이별/그리움","카페"]
+};
+const keyFor={genre:"genre",year:"year",mood:"mood",use:"use"};
+let songs=loadSongs(),queue=[],queueIndex=-1,played=new Set(),player=null,apiReady=false,repeatAll=false;
+let selectedThemeSong=null,selectedCategorySong=null,selectedThemeName="",selectedCategoryMode="theme";
+let selectedWeekTheme=null,editingId=null,adminUnlocked=false;
+
+function loadSongs(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY));if(Array.isArray(d))return d}catch(e){}return DEFAULT_SONGS.map(x=>({...x}))}
+function saveSongs(){localStorage.setItem(STORAGE_KEY,JSON.stringify(songs));renderAll()}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function ytId(v){const s=String(v||"").trim();const m=s.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);return m?m[1]:(/^[\w-]{11}$/.test(s)?s:"")}
+function searchUrl(s){return "https://www.youtube.com/results?search_query="+encodeURIComponent(s.title+" "+s.artist)}
+function uniqueThemes(){return [...new Set(THEMES.map(x=>x.name))]}
+function filteredSongs(){const q=document.getElementById("search").value.toLowerCase(),t=document.getElementById("themeFilter").value;return songs.filter(s=>(!t||s.theme===t)&&(!q||(s.title+" "+s.artist).toLowerCase().includes(q)))}
+function songRow(s,i){return `<div class="song"><div class="num">${i+1}</div><div><div class="songtitle">${esc(s.title)}</div><div class="songmeta">${esc(s.artist)} · ${esc(s.theme||"주제 미지정")}</div><span class="tag">${esc(s.genre||"미분류")}</span><span class="tag">${esc(s.mood||"미분류")}</span></div><div class="songactions"><button class="secondary" onclick="appendToPlaylist(${s.id})">＋ 플리에 추가</button><button onclick="playNow(${s.id})">재생</button></div></div>`}
+function renderSongs(){document.getElementById("songList").innerHTML=filteredSongs().map(songRow).join("")||'<div class="empty">검색 결과가 없습니다.</div>'}
+function renderQueue(){document.getElementById("queueList").innerHTML=queue.length?queue.map((id,i)=>{const s=songs.find(x=>x.id===id);return s?`<div class="queueitem"><span>${i===queueIndex?"▶":i+1}</span><div class="qtitle">${esc(s.title)} · ${esc(s.artist)}</div><button onclick="playQueueIndex(${i})">재생</button><button onclick="removeQueue(${i})">×</button></div>`:""}).join(""):'<div class="empty">대기열이 비어 있습니다.</div>';document.getElementById("queueCount").textContent=queue.length}
+function renderAdmin(){if(!adminUnlocked)return;document.getElementById("adminSongList").innerHTML=songs.map((s,i)=>`<div class="song"><div class="num">${i+1}</div><div><b>${esc(s.title)}</b><div class="songmeta">${esc(s.artist)} · ${esc(s.genre)} · ${esc(s.mood)}</div></div><div class="songactions"><button class="secondary" onclick="editSong(${s.id})">수정</button><button class="ghost" onclick="deleteSong(${s.id})">삭제</button></div></div>`).join("")}
+function renderAll(){document.getElementById("totalCount").textContent=songs.length;document.getElementById("themeCount").textContent=uniqueThemes().length;renderSongs();renderQueue();renderThemes();renderCategoryList();renderAdmin()}
+function showPage(name){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+name));document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===name))}
+document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+
+function renderThemes(){
+ const root=document.getElementById("themeWeeks");root.innerHTML="";
+ const start=new Date("2026-09-21T12:00:00"),end=new Date("2026-11-01T12:00:00");
+ for(let w=0;w<6;w++){
+  const section=document.createElement("div");section.className="week";
+  const h=document.createElement("h3");h.textContent=(w+1)+"주차";section.appendChild(h);
+  const grid=document.createElement("div");grid.className="weekgrid";
+  for(let d=0;d<7;d++){
+   const dt=new Date(start);dt.setDate(start.getDate()+w*7+d);
+   const date=dt.toISOString().slice(0,10),theme=THEMES.find(t=>t.date===date);
+   const b=document.createElement("button");b.className="themebtn"+(!theme?" emptyday":"")+(selectedWeekTheme===theme?.name?" selected":"");
+   const themeSongCount=theme?songs.filter(s=>s.theme===theme.name).length:0;
+   b.innerHTML=theme?`<b>${esc(theme.name)}</b><small>${date.slice(5).replace("-","/")} (${themeSongCount}곡)</small>`:`<b>　</b><small>${date.slice(5).replace("-","/")}</small>`;
+   if(theme)b.onclick=()=>{selectedWeekTheme=theme.name;renderThemes();const target=document.getElementById("weekResult"+w);document.querySelectorAll(".weekresult").forEach(x=>x.innerHTML="");target.innerHTML=`<h4>${esc(theme.name)}</h4>`+songs.filter(s=>s.theme===theme.name).map(songRow).join("")||'<div class="empty">연결된 곡이 없습니다.</div>'};
+   grid.appendChild(b);
+  }
+  section.appendChild(grid);const result=document.createElement("div");result.className="weekresult";result.id="weekResult"+w;section.appendChild(result);root.appendChild(section);
+ }
+}
+function selectTheme(t){selectedWeekTheme=t;renderThemes();const item=THEMES.find(x=>x.name===t);if(!item)return;const dt=new Date(item.date+"T12:00:00"),start=new Date("2026-09-21T12:00:00");const w=Math.floor((dt-start)/86400000/7);const r=document.getElementById("weekResult"+w);r.innerHTML=`<h4>${esc(t)}</h4>`+songs.filter(s=>s.theme===t).map(songRow).join("")||'<div class="empty">연결된 곡이 없습니다.</div>'}
+
+function setDrawResult(prefix,s){
+ const fields=prefix==="theme"?["themeDrawTheme","themeDrawTitle","themeDrawArtist"]:["categoryDrawTheme","categoryDrawTitle","categoryDrawArtist"];
+ document.getElementById(fields[0]).textContent=s?.theme||"주제 미지정";document.getElementById(fields[1]).textContent=s?.title||"추첨 전";document.getElementById(fields[2]).textContent=s?.artist||"추첨 전";
+}
+function randomPick(list){return list.length?list[Math.floor(Math.random()*list.length)]:null}
+function appendToPlaylist(id){const s=songs.find(x=>x.id===id);if(!s)return;queue.push(id);renderQueue();showPage("home")}
+function drawTheme(){const pool=songs.filter(s=>s.theme);selectedThemeSong=randomPick(pool);if(!selectedThemeSong){alert("추첨할 곡이 없습니다.");return}setDrawResult("theme",selectedThemeSong);if(document.getElementById("themeAutoAdd").checked)appendToPlaylist(selectedThemeSong.id)}
+document.getElementById("themeDice").onclick=drawTheme;document.getElementById("themeAdd").onclick=()=>selectedThemeSong&&appendToPlaylist(selectedThemeSong.id);
+document.querySelectorAll(".subtab").forEach(b=>b.onclick=()=>{selectedCategoryMode=b.dataset.mode;document.querySelectorAll(".subtab").forEach(x=>x.classList.toggle("active",x===b));document.getElementById("themeDraw").classList.toggle("hidden",selectedCategoryMode!=="theme");document.getElementById("categoryDraw").classList.toggle("hidden",selectedCategoryMode!=="category")});
+function fillSubCategory(){const main=document.getElementById("categoryMain").value,sub=document.getElementById("categorySub");sub.innerHTML='<option value="">세부 카테고리 (선택)</option>';sub.disabled=!main;if(main)categories[main].forEach(x=>sub.add(new Option(x,x)));document.getElementById("categoryDrawResult").classList.toggle("disabled",!main);selectedCategorySong=null;setDrawResult("category",null)}
+document.getElementById("categoryMain").onchange=fillSubCategory;
+document.getElementById("categoryDice").onclick=()=>{const main=document.getElementById("categoryMain").value,sub=document.getElementById("categorySub").value;if(!main)return;const prop=keyFor[main];let pool=songs.filter(s=>{if(main==="year"){const n=Number(s.year||0);const ranges={"1980 이전":n<1980,"1980~":n>=1980&&n<1990,"1990~":n>=1990&&n<2000,"2000~":n>=2000&&n<2010,"2010~":n>=2010&&n<2020,"2020~":n>=2020};return sub?ranges[sub]:true}return sub?s[prop]===sub:!!s[prop]});selectedCategorySong=randomPick(pool);if(!selectedCategorySong){alert("해당 분류에 등록된 곡이 없습니다.");return}setDrawResult("category",selectedCategorySong);if(document.getElementById("categoryAutoAdd").checked)appendToPlaylist(selectedCategorySong.id)};
+document.getElementById("categoryAdd").onclick=()=>selectedCategorySong&&appendToPlaylist(selectedCategorySong.id);
+
+function renderCategoryList(){
+ const main=document.getElementById("categoryView").value,sub=document.getElementById("categoryValue"),opts=categories[main];
+ const old=sub.value;sub.innerHTML='<option value="">전체 보기</option>';
+ opts.forEach(x=>sub.add(new Option(x,x)));if(opts.includes(old))sub.value=old;
+ const v=sub.value;let pool=songs.filter(s=>{if(!v)return true;if(main==="year"){const n=Number(s.year||0);return v==="1980 이전"?n<1980:v==="1980~"?n>=1980&&n<1990:v==="1990~"?n>=1990&&n<2000:v==="2000~"?n>=2000&&n<2010:v==="2010~"?n>=2010&&n<2020:n>=2020}return s[main]===v});
+ document.getElementById("categorySongList").innerHTML=pool.map(songRow).join("")||'<div class="empty">해당 분류에 등록된 곡이 없습니다.</div>';
+}
+document.getElementById("categoryView").onchange=renderCategoryList;document.getElementById("categoryValue").onchange=renderCategoryList;
+document.getElementById("categoryRandom").onclick=()=>{const main=document.getElementById("categoryView").value,v=document.getElementById("categoryValue").value;let pool=songs;if(v){if(main==="year"){const n=s=>Number(s.year||0);pool=pool.filter(s=>v==="1980 이전"?n(s)<1980:v==="1980~"?n(s)>=1980&&n(s)<1990:v==="1990~"?n(s)>=1990&&n(s)<2000:v==="2000~"?n(s)>=2000&&n(s)<2010:v==="2010~"?n(s)>=2010&&n(s)<2020:n(s)>=2020)}else pool=pool.filter(s=>s[main]===v)}const s=randomPick(pool);if(s){selectedCategorySong=s;setDrawResult("category",s);showPage("random");document.querySelector('[data-mode="category"]').click();document.getElementById("categoryMain").value=main;fillSubCategory();document.getElementById("categorySub").value=v;setDrawResult("category",s)}else alert("추첨할 곡이 없습니다.")};
+
+function addQueue(id){queue.push(id);renderQueue()}
+function playNow(id){queue=[id];queueIndex=0;renderQueue();playQueueIndex(0)}
+function playQueueIndex(i){if(i<0||i>=queue.length)return;queueIndex=i;const s=songs.find(x=>x.id===queue[i]);if(!s)return;document.getElementById("nowTitle").textContent=s.title;document.getElementById("nowArtist").textContent=s.artist;document.getElementById("playState").textContent="NOW PLAYING";if(s.videoId)loadVideo(s.videoId);else document.getElementById("videoArea").innerHTML=`<div class="placeholder"><a style="color:white" target="_blank" rel="noopener" href="${searchUrl(s)}">유튜브에서 검색하기</a></div>`;renderQueue()}
+function loadVideo(id){
+ if(!apiReady){document.getElementById("videoArea").innerHTML='<div class="placeholder">유튜브 플레이어 불러오는 중…</div>';window.pendingVideo=id;return}
+ if(player&&player.loadVideoById){player.loadVideoById(id);return}
+ const area=document.getElementById("videoArea");
+ area.innerHTML="";
+ const frame=document.createElement("iframe");
+ const params=new URLSearchParams({enablejsapi:"1",playsinline:"1",rel:"0"});
+ if(location.protocol==="http:"||location.protocol==="https:")params.set("origin",location.origin);
+ frame.id="ytplayer";
+ frame.title="YouTube 동영상 플레이어";
+ frame.src=`https://www.youtube.com/embed/${encodeURIComponent(id)}?${params.toString()}`;
+ frame.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+ frame.referrerPolicy="strict-origin-when-cross-origin";
+ frame.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+ frame.allowFullscreen=true;
+ frame.style.width="100%";
+ frame.style.height="100%";
+ frame.style.border="0";
+ area.appendChild(frame);
+ player=new YT.Player(frame,{events:{onReady:e=>e.target.playVideo(),onStateChange:onPlayerState,onError:onPlayerError,onAutoplayBlocked:()=>document.getElementById("playState").textContent="재생 버튼을 눌러 주세요"}})
+}
+function onPlayerState(e){if(e.data===YT.PlayerState.ENDED)nextTrack();if(e.data===YT.PlayerState.PLAYING)document.getElementById("playState").textContent="재생 중";if(e.data===YT.PlayerState.PAUSED)document.getElementById("playState").textContent="일시정지"}
+function onPlayerError(e){document.getElementById("playState").textContent="영상 오류 "+e.data;if(e.data!==153)setTimeout(nextTrack,1200)}
+function nextTrack(){if(queueIndex+1<queue.length){playQueueIndex(queueIndex+1);return}if(repeatAll&&queue.length){playQueueIndex(0);return}document.getElementById("playState").textContent="재생 대기열 종료"}
+function togglePlay(){if(!player)return;if(player.getPlayerState()===YT.PlayerState.PLAYING)player.pauseVideo();else player.playVideo()}
+document.getElementById("playPause").onclick=togglePlay;document.getElementById("nextTrack").onclick=nextTrack;document.getElementById("prevTrack").onclick=()=>queueIndex>0&&playQueueIndex(queueIndex-1);
+document.getElementById("shuffleQueue").onclick=()=>{if(queue.length<2)return;const current=queue[queueIndex],rest=queue.filter((_,i)=>i!==queueIndex).sort(()=>Math.random()-.5);queue=current?[current,...rest]:rest;queueIndex=current?0:-1;renderQueue()};
+document.getElementById("repeatQueue").onclick=()=>{repeatAll=!repeatAll;document.getElementById("repeatQueue").style.background=repeatAll?"#247a59":"#343943"};
+document.getElementById("clearQueue").onclick=()=>{queue=[];queueIndex=-1;if(player)player.stopVideo();document.getElementById("nowTitle").textContent="곡을 선택해 주세요";document.getElementById("nowArtist").textContent="아티스트";document.getElementById("videoArea").innerHTML='<div class="placeholder">곡을 선택하면 여기에 유튜브 영상이 표시됩니다.</div>';renderQueue()};
+function removeQueue(i){queue.splice(i,1);if(queueIndex>=i)queueIndex--;renderQueue()}
+function buildQueue(){const pool=[...songs].sort(()=>Math.random()-.5).slice(0,10);queue=pool.map(s=>s.id);queueIndex=-1;renderQueue();if(queue.length)playQueueIndex(0)}
+document.getElementById("randomOne").onclick=()=>{const s=randomPick(filteredSongs());if(s)playNow(s.id)};
+document.getElementById("makeQueue").onclick=buildQueue;
+document.getElementById("search").oninput=renderSongs;document.getElementById("themeFilter").onchange=renderSongs;
+
+function editSong(id){const s=songs.find(x=>x.id===id);if(!s)return;const map={Title:"title",Artist:"artist",Date:"date",Theme:"theme",Member:"member",Video:"videoId",Reason:"reason",Genre:"genre",Year:"year",Mood:"mood",Use:"use"};Object.entries(map).forEach(([k,v])=>{const el=document.getElementById("f"+k);if(el)el.value=s[v]??""});document.getElementById("fId").value=id;document.getElementById("saveSong").textContent="수정 저장";showPage("admin")}
+function clearForm(){document.getElementById("songForm").reset();document.getElementById("fId").value="";document.getElementById("saveSong").textContent="곡 등록"}
+function deleteSong(id){if(!confirm("이 곡을 삭제하시겠습니까?"))return;songs=songs.filter(s=>s.id!==id);queue=queue.filter(x=>x!==id);saveSongs()}
+document.getElementById("songForm").onsubmit=e=>{e.preventDefault();const id=Number(document.getElementById("fId").value)||Math.max(0,...songs.map(s=>s.id))+1;const obj={id,title:document.getElementById("fTitle").value.trim(),artist:document.getElementById("fArtist").value.trim(),date:document.getElementById("fDate").value,theme:document.getElementById("fTheme").value.trim(),member:document.getElementById("fMember").value.trim(),videoId:ytId(document.getElementById("fVideo").value),reason:document.getElementById("fReason").value.trim(),genre:document.getElementById("fGenre").value,year:Number(document.getElementById("fYear").value),mood:document.getElementById("fMood").value,use:document.getElementById("fUse").value,verified:false};const i=songs.findIndex(s=>s.id===id);if(i>=0)songs[i]=obj;else songs.push(obj);clearForm();saveSongs()};
+document.getElementById("cancelEdit").onclick=clearForm;
+document.getElementById("unlockAdmin").onclick=()=>{if(document.getElementById("adminPassword").value==="jeans34th"){adminUnlocked=true;document.getElementById("adminLock").classList.add("hidden");document.getElementById("adminContent").classList.remove("hidden");renderAdmin()}else document.getElementById("adminError").textContent="접근 코드가 올바르지 않습니다."};
+document.getElementById("adminPassword").onkeydown=e=>{if(e.key==="Enter")document.getElementById("unlockAdmin").click()};
+document.getElementById("exportJson").onclick=()=>{const blob=new Blob([JSON.stringify(songs,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="music_piece_34_songs.json";a.click();URL.revokeObjectURL(a.href)};
+document.getElementById("importJsonBtn").onclick=()=>document.getElementById("importJson").click();
+document.getElementById("importJson").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!Array.isArray(d)||!d.every(x=>x.title&&x.artist))throw Error();songs=d;saveSongs();alert("곡 데이터를 불러왔습니다.")}catch(e){alert("올바른 JSON 파일이 아닙니다.")}e.target.value=""};
+function init(){document.getElementById("themeFilter").innerHTML='<option value="">전체 주제</option>'+uniqueThemes().map(t=>`<option>${esc(t)}</option>`).join("");document.getElementById("themeOptions").innerHTML=uniqueThemes().map(t=>`<option value="${esc(t)}">`).join("");renderAll()}
+init();
+window.onYouTubeIframeAPIReady=()=>{apiReady=true;if(window.pendingVideo){const v=window.pendingVideo;window.pendingVideo=null;loadVideo(v)}};
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+</body></html>
